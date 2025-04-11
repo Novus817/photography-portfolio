@@ -1,16 +1,6 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import Nav from './components/Nav';
 import './globals.css';
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
 
 export const metadata: Metadata = {
   title: 'Photography Portfolio',
@@ -24,8 +14,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
+      <body className="bg-gray-900 text-white">
+        <header className="bg-black py-4 sticky top-0 z-10">
+          <Nav />
+        </header>
+        <main>{children}</main>
+        <footer className="bg-black py-4 mt-8">
+          <div className="container mx-auto px-4 text-center">
+            <p>
+              &copy; {new Date().getFullYear()} Anthony Marrello. All rights
+              reserved.
+            </p>
+          </div>
+        </footer>
       </body>
     </html>
   );
