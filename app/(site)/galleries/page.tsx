@@ -1,22 +1,30 @@
-// app/(site)/page.tsx
-import GalleryGrid from '@/components/GalleryGrid';
-import Lightbox from '@/components/Lightbox';
+import Image from 'next/image';
+import { getGalleries } from '@/lib/photos';
 
-export default function HomePage() {
+export default async function GalleriesPage() {
+  const galleries = await getGalleries();
   return (
-    <main className="space-y-8">
-      <section className="space-y-3">
-        <h1 className="text-2xl sm:text-3xl font-semibold">Selected Work</h1>
-        <p className="text-mute max-w-2xl">
-          A curated selection from recent portraits and landscapes.
-        </p>
-      </section>
-
-      {/* Server grid + client lightbox */}
-      {/* sizes tuned for home hero grid */}
-      {/* @ts-expect-error Async Server Component */}
-      <GalleryGrid sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw" />
-      {/* <Lightbox /> */}
+    <main className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+      {galleries.map((g) => (
+        <a
+          key={g.slug}
+          href={`/galleries/${g.slug}`}
+          className="block overflow-hidden rounded-[var(--radius-xl)]"
+        >
+          <Image
+            src={g.coverId}
+            alt={g.title}
+            width={1600}
+            height={1000}
+            sizes="(max-width:1280px) 33vw, 25vw"
+            className="h-auto w-full object-cover"
+          />
+          <div className="p-3">
+            <h2 className="text-lg font-medium">{g.title}</h2>
+            <p className="text-sm text-[var(--color-mute)]">{g.count} photos</p>
+          </div>
+        </a>
+      ))}
     </main>
   );
 }
