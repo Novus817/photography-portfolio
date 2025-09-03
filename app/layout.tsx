@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-gray-900 text-white">
+      <body className="bg-gray-800 text-white">
         <header className="bg-black py-4 sticky top-0 z-10">
           <Nav />
         </header>

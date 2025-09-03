@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function Nav() {
   return (
-    <nav className="container mx-auto px-4 flex justify-between items-center">
+    <nav className="navbar">
       <h1 className="text-xl font-bold">Anthony Marrello</h1>
       <ul className="flex space-x-6">
         <li>
