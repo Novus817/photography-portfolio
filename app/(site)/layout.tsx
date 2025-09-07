@@ -1,32 +1,20 @@
-import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
-import '../../styles/globals.css';
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
-
-export const metadata: Metadata = {
-  title: 'Alt Photography Portfolio',
-  description: 'My photography work.',
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
-      </body>
-    </html>
+    <>
+      <header className="mb-8 flex items-center justify-between">
+        <a href="/" className="text-xl font-semibold">
+          Your Name
+        </a>
+        <nav className="flex gap-6 text-sm text-[var(--color-mute)]">
+          <a href="/galleries">Galleries</a>
+        </nav>
+      </header>
+
+      {children}
+
+      <footer className="mt-12 text-center text-sm text-[var(--color-mute)]">
+        © {new Date().getFullYear()} Your Name
+      </footer>
+    </>
   );
 }
