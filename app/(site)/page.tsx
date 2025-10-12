@@ -8,9 +8,7 @@ export default async function HomePage() {
     <main className="space-y-6">
       <section>
         <h1 className="text-3xl font-bold">Selected Work</h1>
-        <p className="text-[var(--color-mute)]">
-          A curated selection from recent shoots.
-        </p>
+        <p className="text-[var(--color-mute)]">A single image smoke test.</p>
       </section>
 
       <GalleryGrid />
