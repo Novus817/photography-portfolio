@@ -1,6 +1,9 @@
-type Props = { src: string; width: number; quality?: number };
+type LoaderProps = { src: string; width: number; quality?: number };
 
-export default function cloudinaryLoader({ src, width, quality }: Props) {
+const CLOUD = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+
+export default function cloudinaryLoader({ src, width, quality }: LoaderProps) {
   const q = quality ?? 75;
-  return `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/f_auto,q_${q},w_${width}/${src}`;
+  if (!CLOUD) throw new Error('CLOUDINARY_CLOUD_NAME is missing');
+  return `https://res.cloudinary.com/${CLOUD}/image/upload/f_auto,q_${q},w_${width}/${src}`;
 }
