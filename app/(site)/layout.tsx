@@ -3,7 +3,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
     <>
       <header className="mb-8 flex items-center justify-between">
         <a href="/" className="text-xl font-semibold">
-          Your Name
+          Anthony Paul Marrello Jr.
         </a>
         <nav className="flex gap-6 text-sm text-[var(--color-mute)]">
           <a href="/galleries">Galleries</a>
@@ -13,7 +13,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       {children}
 
       <footer className="mt-12 text-center text-sm text-[var(--color-mute)]">
-        © {new Date().getFullYear()} Your Name
+        © {new Date().getFullYear()} Anthony Paul Marrello Jr.
       </footer>
     </>
   );
