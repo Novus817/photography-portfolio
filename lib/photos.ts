@@ -1,59 +1,19 @@
 import type { Gallery, Photo } from '@/types';
+import { client } from '@/sanity/lib/client';
+import { galleriesQuery, photosQuery } from '@/sanity/lib/queries';
 
-const PHOTOS: Photo[] = [
-  {
-    id: '1',
-    publicId: 'portfolio/landscape-1',
-    width: 3000,
-    height: 2000,
-    alt: 'Sitting in front of a fire during a July night',
-    gallery: 'landscapes',
-    caption: 'Summer night in front of a fire',
-  },
-  {
-    id: '2',
-    publicId: 'portfolio/landscape-2',
-    width: 3000,
-    height: 4000,
-    alt: 'Night image with milky way and stars over a tree',
-    gallery: 'landscapes',
-    caption: 'Summer night under the stars',
-  },
-  {
-    id: '3',
-    publicId: 'portfolio/milky-way-1',
-    width: 3000,
-    height: 4000,
-    alt: 'Summer night staring at the Milky Way Galaxy',
-    gallery: 'landscapes',
-    caption: 'Summer night under the Milky Way',
-  },
-];
+export async function getPhotos(gallery?: string): Promise<Photo[]> {
+  const photos = await client.fetch<Photo[]>(photosQuery);
 
-const GALLERIES: Gallery[] = [
-  {
-    slug: 'landscapes',
-    title: 'Landscapes',
-    coverId: 'portfolio/landscape-1',
-    count: PHOTOS.filter((photo) => photo.gallery === 'landscapes').length,
-  },
-  {
-    slug: 'portraits',
-    title: 'Portraits',
-    coverId: 'portfolio/landscape-2',
-    count: PHOTOS.filter((photo) => photo.gallery === 'portraits').length,
-  },
-];
+  if (!gallery) return photos;
+  return photos.filter((photo) => photo.gallery === gallery);
+}
 
 export async function getGalleries(): Promise<Gallery[]> {
-  return GALLERIES;
+  return client.fetch<Gallery[]>(galleriesQuery);
 }
 
 export async function getGallery(slug: string): Promise<Gallery | null> {
-  return GALLERIES.find((gallery) => gallery.slug === slug) ?? null;
-}
-
-export async function getPhotos(gallery?: string): Promise<Photo[]> {
-  if (!gallery) return PHOTOS;
-  return PHOTOS.filter((photo) => photo.gallery === gallery);
+  const galleries = await getGalleries();
+  return galleries.find((gallery) => gallery.slug === slug) ?? null;
 }
