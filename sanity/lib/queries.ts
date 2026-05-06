@@ -1,6 +1,7 @@
 export const photosQuery = `
   *[_type == "photo"] | order(_createdAt desc) {
     "id": _id,
+    title,
     publicId,
     width,
     height,

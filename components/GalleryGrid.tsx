@@ -5,6 +5,14 @@ import { CldImage } from 'next-cloudinary';
 export default async function GalleryGrid({ gallery }: { gallery?: string }) {
   const photos = await getPhotos(gallery);
 
+  if (!photos.length) {
+    return (
+      <p className="text-sm text-[var(--color-mute)]">
+        No photos found yet. Add photo documents in Sanity Studio.
+      </p>
+    );
+  }
+
   return (
     <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
       {photos.map((photo) => (
