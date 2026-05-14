@@ -61,11 +61,12 @@ export const photoType = defineType({
     select: {
       title: 'title',
       subtitle: 'publicId',
+      gallery: 'gallery.title',
     },
-    prepare({ title, subtitle }) {
+    prepare({ title, subtitle, gallery }) {
       return {
         title: title || 'Untitled photo',
-        subtitle,
+        subtitle: gallery ? `${gallery} • ${subtitle}` : subtitle,
       };
     },
   },

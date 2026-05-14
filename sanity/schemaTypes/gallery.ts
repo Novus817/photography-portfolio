@@ -43,11 +43,12 @@ export const galleryType = defineType({
     select: {
       title: 'title',
       subtitle: 'slug.current',
+      coverId: 'coverId',
     },
-    prepare({ title, subtitle }) {
+    prepare({ title, subtitle, coverId }) {
       return {
         title: title || 'Untitled gallery',
-        subtitle: subtitle ? `/${subtitle}` : 'No slug set',
+        subtitle: subtitle ? `/${subtitle} • ${coverId}` : coverId,
       };
     },
   },
