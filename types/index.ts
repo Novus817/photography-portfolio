@@ -1,11 +1,9 @@
 export type Photo = {
   id: string;
+  title: string;
 
-  // Cloudinary
-  publicId: string; // e.g. "portfolio/landscape-1"
-
-  // Optional: future Sanity linkage
-  assetId?: string; // Sanity asset _id (optional for now)
+  publicId: string;
+  assetId?: string;
 
   width: number;
   height: number;
@@ -13,9 +11,7 @@ export type Photo = {
   alt: string;
   caption?: string;
 
-  gallery: string; // slug
-
-  // UX
+  gallery: string;
   blurDataURL?: string;
 };
 
