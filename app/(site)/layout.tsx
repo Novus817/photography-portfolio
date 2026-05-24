@@ -1,20 +1,25 @@
+import Link from 'next/link';
+
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      <header className="mb-8 flex items-center justify-between">
-        <a href="/" className="text-xl font-semibold">
+    <div className="mx-auto flex min-h-screen max-w-7xl flex-col px-4 py-8 sm:px-6 lg:px-8">
+      <header className="mb-10 flex items-center justify-between">
+        <Link href="/" className="text-lg font-semibold tracking-tight">
           Anthony Paul Marrello Jr.
-        </a>
+        </Link>
+
         <nav className="flex gap-6 text-sm text-[var(--color-mute)]">
-          <a href="/galleries">Galleries</a>
+          <Link href="/galleries" className="transition hover:text-white">
+            Galleries
+          </Link>
         </nav>
       </header>
 
-      {children}
+      <div className="flex-1">{children}</div>
 
-      <footer className="mt-12 text-center text-sm text-[var(--color-mute)]">
+      <footer className="mt-16 border-t border-white/10 pt-6 text-center text-sm text-[var(--color-mute)]">
         © {new Date().getFullYear()} Anthony Paul Marrello Jr.
       </footer>
-    </>
+    </div>
   );
 }
