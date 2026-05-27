@@ -1,24 +1,31 @@
 import GalleryGrid from '@/components/GalleryGrid';
 import Lightbox from '@/components/Lightbox';
 import { getGalleries, getPhotos } from '@/lib/photos';
+import { client } from '@/sanity/lib/client';
+import { homePageQuery } from '@/sanity/lib/queries';
 import { CldImage } from 'next-cloudinary';
 import Link from 'next/link';
 
 export default async function HomePage() {
   const photos = await getPhotos();
   const galleries = await getGalleries();
+  const homePage = await client.fetch(homePageQuery);
 
   return (
     <main className="space-y-12">
       <section className="space-y-3">
         <p className="text-sm uppercase tracking-[0.3em] text-[var(--color-mute)]">
-          Photography Portfolio
+          {homePage?.eyebrow ?? 'Photography Portfolio'}
         </p>
+
         <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
-          Selected photography across landscapes, details, and visual stories.
+          {homePage?.heading ??
+            'Selected photography across landscapes, details, and visual stories.'}
         </h1>
+
         <p className="max-w-2xl text-[var(--color-mute)]">
-          A curated collection of images organized by gallery.
+          {homePage?.description ??
+            'A curated collection of images organized by gallery.'}
         </p>
       </section>
 
@@ -26,9 +33,11 @@ export default async function HomePage() {
         <section className="space-y-4">
           <div className="flex items-end justify-between gap-4">
             <div>
-              <h2 className="text-2xl font-semibold">Browse Galleries</h2>
+              <h2 className="text-2xl font-semibold">
+                {homePage?.galleriesTitle ?? 'Browse Galleries'}
+              </h2>
               <p className="text-sm text-[var(--color-mute)]">
-                Explore photos by category.
+                {homePage?.galleriesDescription ?? 'Explore photos by category.'}
               </p>
             </div>
 
@@ -79,9 +88,12 @@ export default async function HomePage() {
 
       <section className="space-y-4">
         <div>
-          <h2 className="text-2xl font-semibold">Selected Work</h2>
+          <h2 className="text-2xl font-semibold">
+            {homePage?.selectedWorkTitle ?? 'Selected Work'}
+          </h2>
           <p className="text-sm text-[var(--color-mute)]">
-            Recent photos from all galleries.
+            {homePage?.selectedWorkDescription ??
+              'Recent photos from all galleries.'}
           </p>
         </div>
 
