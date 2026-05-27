@@ -20,3 +20,15 @@ export const galleriesQuery = `
     "count": count(*[_type == "photo" && references(^._id)])
   }
 `;
+
+export const homePageQuery = `
+  *[_type == "homePage"][0] {
+    eyebrow,
+    heading,
+    description,
+    galleriesTitle,
+    galleriesDescription,
+    selectedWorkTitle,
+    selectedWorkDescription
+  }
+`;
