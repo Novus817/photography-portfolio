@@ -9,6 +9,10 @@ import Link from 'next/link';
 export default async function HomePage() {
   const photos = await getPhotos();
   const galleries = await getGalleries();
+  const featuredGalleries =
+    galleries.filter((gallery) => gallery.featured).length > 0
+      ? galleries.filter((gallery) => gallery.featured)
+      : galleries;
   const homePage = await client.fetch(homePageQuery);
 
   return (
@@ -50,7 +54,7 @@ export default async function HomePage() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-            {galleries.map((gallery) => (
+            {featuredGalleries.map((gallery) => (
               <Link
                 key={gallery.slug}
                 href={`/galleries/${gallery.slug}`}
