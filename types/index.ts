@@ -19,8 +19,8 @@ export type Gallery = {
   slug: string;
   title: string;
   description?: string;
-
-  coverId: string; // Cloudinary publicId (keep consistent)
-
+  coverId: string;
   count: number;
+  featured?: boolean;
+  order?: number;
 };

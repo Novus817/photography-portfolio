@@ -12,11 +12,13 @@ export const photosQuery = `
 `;
 
 export const galleriesQuery = `
-  *[_type == "gallery"] | order(title asc) {
+  *[_type == "gallery"] | order(order asc, title asc) {
     "slug": slug.current,
     title,
     description,
     coverId,
+    featured,
+    order,
     "count": count(*[_type == "photo" && references(^._id)])
   }
 `;

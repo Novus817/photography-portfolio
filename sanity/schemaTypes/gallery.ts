@@ -38,6 +38,21 @@ export const galleryType = defineType({
         'Example: portfolio/landscape-1. Used as the gallery cover image.',
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: 'featured',
+      title: 'Featured',
+      type: 'boolean',
+      description: 'Show this gallery more prominently on the homepage.',
+      initialValue: true,
+    }),
+    defineField({
+      name: 'order',
+      title: 'Display order',
+      type: 'number',
+      description: 'Lower numbers appear first.',
+      initialValue: 0,
+      validation: (Rule) => Rule.required().integer().min(0),
+    }),
   ],
   preview: {
     select: {
