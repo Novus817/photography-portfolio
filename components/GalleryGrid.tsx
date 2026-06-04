@@ -1,6 +1,6 @@
 import { getPhotos } from '@/lib/photos';
 import { cn } from '@/utils/cn';
-import { CldImage } from 'next-cloudinary';
+import CloudinaryImage from '@/components/CloudinaryImage';
 
 export default async function GalleryGrid({ gallery }: { gallery?: string }) {
   const photos = await getPhotos(gallery);
@@ -28,7 +28,7 @@ export default async function GalleryGrid({ gallery }: { gallery?: string }) {
             'focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70',
           )}
         >
-          <CldImage
+          <CloudinaryImage
             src={photo.publicId}
             alt={photo.alt}
             width={photo.width}

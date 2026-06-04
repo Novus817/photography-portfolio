@@ -1,5 +1,5 @@
 import { getGalleries } from '@/lib/photos';
-import { CldImage } from 'next-cloudinary';
+import CloudinaryImage from '@/components/CloudinaryImage';
 import Link from 'next/link';
 
 export default async function GalleriesPage() {
@@ -21,7 +21,7 @@ export default async function GalleriesPage() {
             href={`/galleries/${gallery.slug}`}
             className="group block overflow-hidden rounded-[var(--radius-xl)]"
           >
-            <CldImage
+            <CloudinaryImage
               src={gallery.coverId}
               alt={gallery.title}
               width={1600}

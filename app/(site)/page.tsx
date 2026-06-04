@@ -3,7 +3,7 @@ import Lightbox from '@/components/Lightbox';
 import { getGalleries, getPhotos } from '@/lib/photos';
 import { client } from '@/sanity/lib/client';
 import { homePageQuery } from '@/sanity/lib/queries';
-import { CldImage } from 'next-cloudinary';
+import CloudinaryImage from '@/components/CloudinaryImage';
 import Link from 'next/link';
 
 export default async function HomePage() {
@@ -60,7 +60,7 @@ export default async function HomePage() {
                 href={`/galleries/${gallery.slug}`}
                 className="group overflow-hidden rounded-[var(--radius-xl)]"
               >
-                <CldImage
+                <CloudinaryImage
                   src={gallery.coverId}
                   alt={gallery.title}
                   width={1200}
